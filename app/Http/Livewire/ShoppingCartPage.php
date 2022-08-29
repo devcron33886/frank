@@ -21,7 +21,7 @@ class ShoppingCartPage extends Component
     {
     }
 
-    public function render(): Factory|View|Application
+    public function render()
     {
         $cart = Cart::getContent();
         $settings= Setting::first();

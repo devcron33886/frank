@@ -66,7 +66,7 @@ class Product extends Model implements HasMedia
         return $this->price;
     }
 
-    public function getDiscountPercent(): float|int
+    public function getDiscountPercent()
     {
         return ($this->price * $this->discount) / 100;
     }

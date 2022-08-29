@@ -22,7 +22,7 @@ class CardProduct extends Component
         $this->quantity = 1;
     }
 
-    public function render(): Factory|View|Application
+    public function render()
     {
         return view('livewire.card-product', [
             'added' => Cart::get($this->product->id),

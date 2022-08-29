@@ -22,7 +22,7 @@ class CartItem extends Component
         $this->quantity = $cartItem->quantity;
     }
 
-    public function render(): Factory|View|Application
+    public function render()
     {
         return view('livewire.cart-item', [
             'product' => $this->product,

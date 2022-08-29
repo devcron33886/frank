@@ -17,7 +17,7 @@ class SmallCardProduct extends Component
     {
     }
 
-    public function render(): Factory|View|Application
+    public function render()
     {
         return view('livewire.small-card-product', [
             'added' => Cart::get($this->product->id),

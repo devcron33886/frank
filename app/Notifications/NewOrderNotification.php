@@ -11,7 +11,7 @@ class NewOrderNotification extends Notification
 {
     use Queueable;
 
-    public Order $order;
+    public  $order;
 
     /**
      * Create a new notification instance.
@@ -40,7 +40,7 @@ class NewOrderNotification extends Notification
      * @param  mixed  $notifiable
      * @return MailMessage
      */
-    public function toMail(mixed $notifiable): MailMessage
+    public function toMail($notifiable)
     {
         return (new MailMessage)
             ->subject('New order', )

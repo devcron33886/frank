@@ -21,7 +21,7 @@ class ProductItem extends Component
         $this->quantity = 1;
     }
 
-    public function render(): Factory|View|Application
+    public function render()
     {
         return view('livewire.product-item', [
             'added' => Cart::get($this->product->id),

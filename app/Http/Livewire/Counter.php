@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class Counter extends Component
 {
-    public function render(): Factory|View|Application
+    public function render()
     {
         return view('livewire.counter');
     }

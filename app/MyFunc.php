@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: CaMi
- * Date: 7/20/2018
- * Time: 4:35 PM
- */
 
 namespace App;
 
@@ -37,19 +31,19 @@ class MyFunc
         }
     }
 
-    public static function counts($table): int
+    public static function counts($table)
     {
         return DB::table($table)->count();
     }
 
-    public static function countOrdersByStatus($status): int
+    public static function countOrdersByStatus($status)
     {
         return DB::table('orders')
             ->whereDate('created_at', date('Y-m-d'))
             ->where('status', $status)->count();
     }
 
-    public static function countOrdersByStatusPercentage($status): float|int
+    public static function countOrdersByStatusPercentage($status)
     {
         $totalByStatus = self::countOrdersByStatus($status);
         $totalOrders = Order::query()->whereDate('created_at', date('Y-m-d'))->count();
@@ -57,7 +51,7 @@ class MyFunc
         return ($totalByStatus * 100) / ($totalOrders > 0 ? $totalOrders : 1);
     }
 
-    public static function recentOrders(): \Illuminate\Database\Eloquent\Collection|array|\LaravelIdea\Helper\App\Models\_IH_Order_C
+    public static function recentOrders()
     {
         return Order::with('orderItems')
             ->latest()
@@ -71,7 +65,7 @@ class MyFunc
             ->join('products', 'order_items.product_id', '=', 'products.id')
             ->join('orders', 'order_items.order_id', '=', 'orders.id')
             ->select(DB::raw('products.name,count(products.id) AS total'))
-            ->where('orders.status', '=', Order::PAID)
+            ->where('orders.status', '=', 'Paid')
             ->groupBy('products.id')
             ->groupBy('products.name')
             ->orderByDesc('total')
@@ -79,7 +73,7 @@ class MyFunc
             ->limit(6)->get();
     }
 
-    public static function totalClients(): int
+    public static function totalClients()
     {
         return count(
             DB::table('orders')
@@ -90,11 +84,11 @@ class MyFunc
         );
     }
 
-    public static function toMoneyIncome(): int
+    public static function toMoneyIncome()
     {
         return DB::table('order_items')
             ->join('orders', 'order_items.order_id', '=', 'orders.id')
-            ->where('orders.status', '=', Order::PAID)
+            ->where('orders.status', '=','Paid')
             ->sum('order_items.sub_total');
     }
 

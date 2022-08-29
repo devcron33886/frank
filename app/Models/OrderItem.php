@@ -54,7 +54,7 @@ class OrderItem extends Model
         });
     }
 
-    public function getTotalAttribute(): float|int
+    public function getTotalAttribute()
     {
         return $this->qty * $this->price;
     }

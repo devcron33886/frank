@@ -16,7 +16,7 @@ class CartCounter extends Component
     {
     }
 
-    public function render(): Factory|View|Application
+    public function render()
     {
         return view('livewire.cart-counter', [
             'count' => Cart::getTotalQuantity(),
