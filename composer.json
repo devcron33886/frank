@@ -23,7 +23,8 @@
         "predis/predis": "^2.0",
         "proengsoft/laravel-jsvalidation": "^4.7",
         "sentry/sentry-laravel": "^2.13",
-        "spatie/laravel-medialibrary": "^9.0"
+        "spatie/laravel-medialibrary": "^9.0",
+        "yajra/laravel-datatables-oracle": "^9.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
