@@ -33,7 +33,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{ number_format(\App\MyFunc::counts("orders")) }}</h3>
+                                <h3>{{ number_format(\App\MyFunc::counts('orders')) }}</h3>
 
                                 <p>Total Orders</p>
                             </div>
@@ -49,7 +49,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>{{ number_format(\App\MyFunc::countOrdersByStatus("Completed")) }}</h3>
+                                <h3>{{ number_format(\App\MyFunc::countOrdersByStatus('Completed')) }}</h3>
 
                                 <p>Completed Orders</p>
                             </div>
@@ -65,7 +65,73 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>{{ number_format(\App\MyFunc::countOrdersByStatus("Pending")) }}</h3>
+                                <h3>{{ number_format(\App\MyFunc::countOrdersByStatus('Pending')) }}</h3>
+
+                                <p>Pending Orders</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="{{ route('admin.orders.index') }}" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>65</h3>
+
+                                <p>Unique Visitors</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ number_format(\App\MyFunc::counts('orders')) }}</h3>
+
+                                <p>Total Orders</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="{{ route('admin.orders.index') }}" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>{{ number_format(\App\MyFunc::countOrdersByStatus('Completed')) }}</h3>
+
+                                <p>Completed Orders</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <a href="{{ route('admin.orders.index') }}" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>{{ number_format(\App\MyFunc::countOrdersByStatus('Pending')) }}</h3>
 
                                 <p>Pending Orders</p>
                             </div>
@@ -103,43 +169,51 @@
                         <div class="card">
                             <div class="card-header ui-sortable-handle" style="cursor: move;">
                                 <h3 class="card-title">
-                                    <i class="fas fa-chart-pie mr-1"></i>
-                                    Sales
+                                    <i class="fas fa-shopping-cart mr-1"></i>
+                                    Recent Orders
                                 </h3>
-                                <div class="card-tools">
-                                    <ul class="nav nav-pills ml-auto">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                                        </li>
-                                    </ul>
-                                </div>
+
                             </div><!-- /.card-header -->
                             <div class="card-body">
-                                <div class="tab-content p-0">
-                                    <!-- Morris chart - Sales -->
-                                    <div class="chart tab-pane active" id="revenue-chart"
-                                        style="position: relative; height: 300px;">
-                                        <div class="chartjs-size-monitor">
-                                            <div class="chartjs-size-monitor-expand">
-                                                <div class=""></div>
-                                            </div>
-                                            <div class="chartjs-size-monitor-shrink">
-                                                <div class=""></div>
-                                            </div>
-                                        </div>
-                                        <canvas id="revenue-chart-canvas" height="900"
-                                            style="height: 300px; display: block; width: 319px;" width="957"
-                                            class="chartjs-render-monitor"></canvas>
-                                    </div>
-                                    <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                                        <canvas id="sales-chart-canvas" height="0"
-                                            style="height: 0px; display: block; width: 0px;" class="chartjs-render-monitor"
-                                            width="0"></canvas>
-                                    </div>
-                                </div>
+                                <table class="table table-responsive table-stripped">
+                                    <thead>
+                                        <tr>
+                                            <th>Date &amp; Time</th>
+                                            <th>Order No.</th>
+                                            <th>Name</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (\App\MyFunc::recentOrders() as $order)
+                                            <tr>
+                                                <td>{{ $order->created_at }}</td>
+                                                <td>{{ $order->id }}</td>
+                                                <td>{{ $order->clientName }}</td>
+                                                <td>{{ number_format($order->orderItems()->sum('sub_total') + $order->shipping_amount) }}
+                                                </td>
+                                                <td>
+                                                    @if ($order->status == 'Pending')
+                                                        <span class="badge badge-warning">{{ $order->status }}</span>
+                                                    @elseif($order->status == 'Processing')
+                                                        <span class="badge badge-info">{{ $order->status }}</span>
+                                                    @elseif($order->status == 'Completed')
+                                                        <span class="badge badge-info">{{ $order->status }}</span>
+                                                    @elseif($order->status == 'On Way')
+                                                        <span class="badge badge-warning">{{ $order->status }}</span>
+                                                    @elseif($order->status == 'Delivered')
+                                                        <span class="badge badge-success">{{ $order->status }}</span>
+                                                    @elseif($order->status == 'Paid')
+                                                        <span class="badge badge-success">{{ $order->status }}</span>
+                                                    @elseif($order->status == 'Cancelled')
+                                                        <span class="badge badge-danger">{{ $order->status }}</span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div><!-- /.card-body -->
                         </div>
                         <!-- /.card -->
@@ -150,7 +224,8 @@
                                 <h3 class="card-title">Direct Chat</h3>
 
                                 <div class="card-tools">
-                                    <span data-toggle="tooltip" title="3 New Messages" class="badge badge-primary">3</span>
+                                    <span data-toggle="tooltip" title="3 New Messages"
+                                        class="badge badge-primary">3</span>
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                         <i class="fas fa-minus"></i>
                                     </button>
