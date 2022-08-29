@@ -175,7 +175,7 @@
 
                             </div><!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-responsive table-stripped">
+                                <table class="table table-responsive table-stripped" style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th>Date &amp; Time</th>
@@ -189,7 +189,7 @@
                                         @foreach (\App\MyFunc::recentOrders() as $order)
                                             <tr>
                                                 <td>{{ $order->created_at }}</td>
-                                                <td>{{ $order->id }}</td>
+                                                <td>{{ $order->order_no }}</td>
                                                 <td>{{ $order->clientName }}</td>
                                                 <td>{{ number_format($order->orderItems()->sum('sub_total') + $order->shipping_amount) }}
                                                 </td>
