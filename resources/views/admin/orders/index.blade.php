@@ -1,109 +1,132 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="card">
-        <div class="card-header">
-            {{ trans('cruds.order.title_singular') }} {{ trans('global.list') }}
+    <div class="content-wrapper" style="min-height: 706px;">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Dashboard</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+                            <li class="breadcrumb-item active">Orders</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
         </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">
+                        {{ trans('cruds.order.title_singular') }} {{ trans('global.list') }}
+                    </div>
 
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-Order">
-                    <thead>
-                        <tr>
-                            <th width="10">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class=" table table-bordered table-striped table-hover datatable datatable-Order">
+                                <thead>
+                                    <tr>
+                                        <th width="10">
 
-                            </th>
-
-
-                            <th>
-                                {{ trans('cruds.order.fields.order_no') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.order.fields.client_name') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.order.fields.client_phone') }}
-                            </th>
-
-                            <th>
-                                {{ trans('cruds.order.fields.status') }}
-                            </th>
+                                        </th>
 
 
-                            <th>
-                                {{ trans('cruds.order.fields.shipping_amount') }}
-                            </th>
+                                        <th>
+                                            {{ trans('cruds.order.fields.order_no') }}
+                                        </th>
+                                        <th>
+                                            {{ trans('cruds.order.fields.client_name') }}
+                                        </th>
+                                        <th>
+                                            {{ trans('cruds.order.fields.client_phone') }}
+                                        </th>
 
-                            <th>
-                                {{ trans('cruds.order.fields.payment_type') }}
-                            </th>
-                            <th>
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($orders as $key => $order)
-                            <tr data-entry-id="{{ $order->id }}">
-                                <td>
-
-                                </td>
-
-                                <td>
-                                    {{ $order->order_no ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $order->clientName ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $order->clientPhone ?? '' }}
-                                </td>
-
-                                <td>
-                                    @if ($order->status == 'Pending')
-                                        <span class="badge badge-warning">{{ $order->status }}</span>
-                                    @elseif($order->status == 'Processing')
-                                        <span class="badge badge-info">{{ $order->status }}</span>
-                                    @elseif($order->status == 'Completed')
-                                        <span class="badge badge-info">{{ $order->status }}</span>
-                                    @elseif($order->status == 'On Way')
-                                        <span class="badge badge-warning">{{ $order->status }}</span>
-                                    @elseif($order->status == 'Delivered')
-                                        <span class="badge badge-success">{{ $order->status }}</span>
-                                    @elseif($order->status == 'Paid')
-                                        <span class="badge badge-success">{{ $order->status }}</span>
-                                    @elseif($order->status == 'Cancelled')
-                                        <span class="badge badge-danger">{{ $order->status }}</span>
-                                    @endif
-                                </td>
+                                        <th>
+                                            {{ trans('cruds.order.fields.status') }}
+                                        </th>
 
 
-                                <td>
-                                    {{ $order->shipping_amount ?? '' }}
-                                </td>
+                                        <th>
+                                            {{ trans('cruds.order.fields.shipping_amount') }}
+                                        </th>
 
-                                <td>
-                                    {{ $order->payment_type ?? '' }}
-                                </td>
-                                <td>
+                                        <th>
+                                            {{ trans('cruds.order.fields.payment_type') }}
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($orders as $key => $order)
+                                        <tr data-entry-id="{{ $order->id }}">
+                                            <td>
+
+                                            </td>
+
+                                            <td>
+                                                {{ $order->order_no ?? '' }}
+                                            </td>
+                                            <td>
+                                                {{ $order->clientName ?? '' }}
+                                            </td>
+                                            <td>
+                                                {{ $order->clientPhone ?? '' }}
+                                            </td>
+
+                                            <td>
+                                                @if ($order->status == 'Pending')
+                                                    <span class="badge badge-warning">{{ $order->status }}</span>
+                                                @elseif($order->status == 'Processing')
+                                                    <span class="badge badge-info">{{ $order->status }}</span>
+                                                @elseif($order->status == 'Completed')
+                                                    <span class="badge badge-info">{{ $order->status }}</span>
+                                                @elseif($order->status == 'On Way')
+                                                    <span class="badge badge-warning">{{ $order->status }}</span>
+                                                @elseif($order->status == 'Delivered')
+                                                    <span class="badge badge-success">{{ $order->status }}</span>
+                                                @elseif($order->status == 'Paid')
+                                                    <span class="badge badge-success">{{ $order->status }}</span>
+                                                @elseif($order->status == 'Cancelled')
+                                                    <span class="badge badge-danger">{{ $order->status }}</span>
+                                                @endif
+                                            </td>
 
 
-                                    @can('order_edit')
-                                        <a class="btn btn-xs btn-info" href="{{ route('admin.orders.edit', $order->id) }}">
-                                            Details
-                                        </a>
-                                    @endcan
+                                            <td>
+                                                {{ $order->shipping_amount ?? '' }}
+                                            </td>
+
+                                            <td>
+                                                {{ $order->payment_type ?? '' }}
+                                            </td>
+                                            <td>
+
+
+                                                @can('order_edit')
+                                                    <a class="btn btn-xs btn-info"
+                                                        href="{{ route('admin.orders.edit', $order->id) }}">
+                                                        Details
+                                                    </a>
+                                                @endcan
 
 
 
-                                </td>
+                                            </td>
 
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
 @endsection
 @section('scripts')
