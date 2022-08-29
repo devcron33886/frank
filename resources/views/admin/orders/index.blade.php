@@ -32,8 +32,9 @@
                                         <th width="10">
 
                                         </th>
-
-
+                                        <th>
+                                            {{ trans('cruds.order.fields.id') }}
+                                        </th>
                                         <th>
                                             {{ trans('cruds.order.fields.order_no') }}
                                         </th>
@@ -43,21 +44,29 @@
                                         <th>
                                             {{ trans('cruds.order.fields.client_phone') }}
                                         </th>
-
+                                        <th>
+                                            {{ trans('cruds.order.fields.email') }}
+                                        </th>
                                         <th>
                                             {{ trans('cruds.order.fields.status') }}
                                         </th>
-
-
+                                        <th>
+                                            {{ trans('cruds.order.fields.shipping_address') }}
+                                        </th>
+                                        <th>
+                                            {{ trans('cruds.order.fields.notes') }}
+                                        </th>
                                         <th>
                                             {{ trans('cruds.order.fields.shipping_amount') }}
                                         </th>
-
+                                        <th>
+                                            {{ trans('cruds.order.fields.updated_by') }}
+                                        </th>
                                         <th>
                                             {{ trans('cruds.order.fields.payment_type') }}
                                         </th>
                                         <th>
-                                            Action
+                                            &nbsp;
                                         </th>
                                     </tr>
                                 </thead>
@@ -67,54 +76,65 @@
                                             <td>
 
                                             </td>
-
+                                            <td>
+                                                {{ $order->id ?? '' }}
+                                            </td>
                                             <td>
                                                 {{ $order->order_no ?? '' }}
                                             </td>
                                             <td>
-                                                {{ $order->clientName ?? '' }}
+                                                {{ $order->client_name ?? '' }}
                                             </td>
                                             <td>
-                                                {{ $order->clientPhone ?? '' }}
+                                                {{ $order->client_phone ?? '' }}
                                             </td>
-
                                             <td>
-                                                @if ($order->status == 'Pending')
-                                                    <span class="badge badge-warning">{{ $order->status }}</span>
-                                                @elseif($order->status == 'Processing')
-                                                    <span class="badge badge-info">{{ $order->status }}</span>
-                                                @elseif($order->status == 'Completed')
-                                                    <span class="badge badge-info">{{ $order->status }}</span>
-                                                @elseif($order->status == 'On Way')
-                                                    <span class="badge badge-warning">{{ $order->status }}</span>
-                                                @elseif($order->status == 'Delivered')
-                                                    <span class="badge badge-success">{{ $order->status }}</span>
-                                                @elseif($order->status == 'Paid')
-                                                    <span class="badge badge-success">{{ $order->status }}</span>
-                                                @elseif($order->status == 'Cancelled')
-                                                    <span class="badge badge-danger">{{ $order->status }}</span>
-                                                @endif
+                                                {{ $order->email ?? '' }}
                                             </td>
-
-
+                                            <td>
+                                                {{ App\Models\Order::STATUS_SELECT[$order->status] ?? '' }}
+                                            </td>
+                                            <td>
+                                                {{ $order->shipping_address ?? '' }}
+                                            </td>
+                                            <td>
+                                                {{ $order->notes ?? '' }}
+                                            </td>
                                             <td>
                                                 {{ $order->shipping_amount ?? '' }}
                                             </td>
-
+                                            <td>
+                                                {{ $order->updated_by->name ?? '' }}
+                                            </td>
                                             <td>
                                                 {{ $order->payment_type ?? '' }}
                                             </td>
                                             <td>
-
+                                                @can('order_show')
+                                                    <a class="btn btn-xs btn-primary"
+                                                        href="{{ route('admin.orders.show', $order->id) }}">
+                                                        {{ trans('global.view') }}
+                                                    </a>
+                                                @endcan
 
                                                 @can('order_edit')
                                                     <a class="btn btn-xs btn-info"
                                                         href="{{ route('admin.orders.edit', $order->id) }}">
-                                                        Details
+                                                        {{ trans('global.edit') }}
                                                     </a>
                                                 @endcan
 
-
+                                                @can('order_delete')
+                                                    <form action="{{ route('admin.orders.destroy', $order->id) }}"
+                                                        method="POST"
+                                                        onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
+                                                        style="display: inline-block;">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                        <input type="submit" class="btn btn-xs btn-danger"
+                                                            value="{{ trans('global.delete') }}">
+                                                    </form>
+                                                @endcan
 
                                             </td>
 
