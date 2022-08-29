@@ -44,24 +44,12 @@
                                         <th>
                                             {{ trans('cruds.order.fields.client_phone') }}
                                         </th>
-                                        <th>
-                                            {{ trans('cruds.order.fields.email') }}
-                                        </th>
+
                                         <th>
                                             {{ trans('cruds.order.fields.status') }}
                                         </th>
-                                        <th>
-                                            {{ trans('cruds.order.fields.shipping_address') }}
-                                        </th>
-                                        <th>
-                                            {{ trans('cruds.order.fields.notes') }}
-                                        </th>
-                                        <th>
-                                            {{ trans('cruds.order.fields.shipping_amount') }}
-                                        </th>
-                                        <th>
-                                            {{ trans('cruds.order.fields.updated_by') }}
-                                        </th>
+
+
                                         <th>
                                             {{ trans('cruds.order.fields.payment_type') }}
                                         </th>
@@ -88,24 +76,21 @@
                                             <td>
                                                 {{ $order->client_phone ?? '' }}
                                             </td>
+
                                             <td>
-                                                {{ $order->email ?? '' }}
+                                                @if ($order->status == 'Pending')
+                                                    <span class="badge badge-warning">{{ $order->status }}</span>
+                                                @elseif($order->status == 'Processing')
+                                                    <span class="badge badge-info">{{ $order->status }}</span>
+                                                @elseif($order->status == 'Delivered')
+                                                    <span class="badge badge-success">{{ $order->status }}</span>
+                                                @elseif($order->status == 'Cancelled')
+                                                    <span class="badge badge-danger">{{ $order->status }}</span>
+                                                @elseif($order->status == 'On Way')
+                                                    <span class="badge badge-primary">{{ $order->status }}</span>
+                                                @endif
                                             </td>
-                                            <td>
-                                                {{ App\Models\Order::STATUS_SELECT[$order->status] ?? '' }}
-                                            </td>
-                                            <td>
-                                                {{ $order->shipping_address ?? '' }}
-                                            </td>
-                                            <td>
-                                                {{ $order->notes ?? '' }}
-                                            </td>
-                                            <td>
-                                                {{ $order->shipping_amount ?? '' }}
-                                            </td>
-                                            <td>
-                                                {{ $order->updated_by->name ?? '' }}
-                                            </td>
+
                                             <td>
                                                 {{ $order->payment_type ?? '' }}
                                             </td>
