@@ -1,13 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\CardProduct;
+use Livewire\Livewire;
 
 Auth::routes(['register' => false]);
 
 Livewire::component('card-product', CardProduct::class);
 
-Route::post('/newsletters/subscribe', 'NewsletterController@subscribe')->name('newsletters.subscribe');
-Route::get('/newsletters/{email}/unsubscribe', 'NewsletterController@unsubscribe')->name('newsletters.unsubscribe');
+Route::post('/newsletters/subscribe', 'NewsletterController@store')->name('newsletters.subscribe');
+
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index');
