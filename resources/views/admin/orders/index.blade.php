@@ -28,9 +28,9 @@
                         <table class=" table table-bordered table-striped table-hover" id="ordersTable">
                             <thead>
                                 <tr>
-                                    
+
                                     <th>
-                                        {{ trans('cruds.order.fields.id') }}
+                                        Order Date
                                     </th>
                                     <th>
                                         {{ trans('cruds.order.fields.order_no') }}
@@ -48,14 +48,14 @@
                                         {{ trans('cruds.order.fields.status') }}
                                     </th>
                                     <th>
-                                        &nbsp;
+                                        Action
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($orders as $key => $order)
-                                    <tr data-entry-id="{{ $order->id }}">
-                                        
+                                @foreach ($orders as $key => $order)
+                                    <tr>
+
                                         <td>
                                             {{ $order->id ?? '' }}
                                         </td>
@@ -72,26 +72,41 @@
                                             {{ $order->shipping_address ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $order->status ?? '' }}
+                                            @if ($order->status == 'Pending')
+                                                <span class="badge badge-warning">{{ $order->status }}</span>
+                                            @elseif($order->status == 'Processing')
+                                                <span class="badge badge-info">{{ $order->status }}</span>
+                                            @elseif($order->status == 'Delivered')
+                                                <span class="badge badge-success">{{ $order->status }}</span>
+                                            @elseif($order->status == 'Cancelled')
+                                                <span class="badge badge-danger">{{ $order->status }}</span>
+                                            @elseif($order->status == 'On Way')
+                                                <span class="badge badge-primary">{{ $order->status }}</span>
+                                            @elseif($order->status == 'Paid')
+                                                <span class="badge badge-success">{{ $order->status }}</span>
+                                            @endif
                                         </td>
                                         <td>
-                                            <a class="btn btn-xs btn-primary" href="{{ route('admin.orders.show', $order->id) }}">
+                                            <a class="btn btn-md btn-primary"
+                                                href="{{ route('admin.orders.edit', $order->id) }}">
+                                                <span class="fa fa-eye"></span> See Deatils
                                             </a>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $orders->links() }}
+                        <div class="pagination">
+                            {{ $orders->links() }}
+                        </div>
+
                     </div>
                 </div>
             </div>
         </section>
     </div>
-    @endsection
-    @section('scripts')
-        @parent
-        <script>
-           
-        </script>
-    @endsection
+@endsection
+@section('scripts')
+    @parent
+    <script></script>
+@endsection

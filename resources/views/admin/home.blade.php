@@ -34,24 +34,6 @@
                     <section class="col-lg-7 connectedSortable ui-sortable">
                         <!-- Recent Orders-->
                         <x-recent-orders-component />
-                        <!-- /.card -->
-
-                        <!-- DIRECT CHAT -->
-                        <div class="card">
-                            <div class="card-header ui-sortable-handle" style="cursor: move;">
-                                <h3 class="card-title">Sales Chart</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                {!! $chart1->renderHtml() !!}
-
-                            </div>
-
-                        </div>
-                        <!--/.direct-chat -->
-
-
-                        <!-- /.card -->
                     </section>
                     <!-- /.Left col -->
                     <!-- right col (We are only adding the ID to make the widgets sortable)-->
@@ -146,21 +128,7 @@
                             </div>
                         </div>
 
-                        <div class="card bg-gradient-success">
-                            <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
-
-                                <h3 class="card-title">
-                                    <i class="far fa-calendar-alt"></i>
-                                    Calendar
-                                </h3>
-
-                            </div>
-
-                            <div class="card-body pt-0">
-
-                            </div>
-
-                        </div>
+                        
 
                     </section>
 
