@@ -32,22 +32,22 @@
 
                                     </th>
                                     <th>
-                                        Id
+                                        {{ trans('cruds.order.fields.id') }}
                                     </th>
                                     <th>
-                                        Order No
+                                        {{ trans('cruds.order.fields.order_no') }}
                                     </th>
                                     <th>
-                                        Client Name
+                                        {{ trans('cruds.order.fields.client_name') }}
                                     </th>
                                     <th>
-                                        Client Phone
+                                        {{ trans('cruds.order.fields.client_phone') }}
                                     </th>
                                     <th>
-                                        Shipping Address
+                                        {{ trans('cruds.order.fields.shipping_address') }}
                                     </th>
                                     <th>
-                                        Status
+                                        {{ trans('cruds.order.fields.status') }}
                                     </th>
                                     <th>
                                         &nbsp;
