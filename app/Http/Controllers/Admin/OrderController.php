@@ -16,7 +16,7 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $orders=Order::with('updated_by')->get();
+        $orders=Order::with('updated_by')->orderBy('id','desc')->paginate(10);
        
         return view('admin.orders.index',compact('orders'));
     }
