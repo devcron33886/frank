@@ -53,11 +53,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($orders as $key => $order)
-                                    <tr>
-
+                                @foreach ($orders as $order)
+                                    <tr >
                                         <td>
-                                            {{ $order->id ?? '' }}
+                                            {{ $order->created_at ?? '' }}
                                         </td>
                                         <td>
                                             {{ $order->order_no ?? '' }}
@@ -96,7 +95,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-
+                        <div class="pagination py-2 float-right">
+                            {{ $orders->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -106,15 +107,16 @@
 @section('scripts')
     @parent
     <script>
-        $(document).ready(function() {
-            $('#ordersTable').DataTable();
-            "paging": true,
+        $(function () {
+          
+          $('#ordersTable').DataTable({
+            "paging": false,
             "lengthChange": false,
-            "searching": false,
+            "searching": true,
             "ordering": true,
-            "info": true,
+            "info": false,
             "autoWidth": false,
-
+          });
         });
-    </script>
+      </script>
 @endsection
