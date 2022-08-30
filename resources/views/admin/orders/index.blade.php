@@ -96,7 +96,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="pagination">
+                        <div class="pagination float-right">
                             {{ $orders->links() }}
                         </div>
 
