@@ -90,7 +90,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
-    <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
     <script>
         $(function() {
             let copyButtonTrans = '{{ trans('global.datatables.copy') }}'
