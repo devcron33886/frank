@@ -108,6 +108,13 @@
     <script>
         $(document).ready(function() {
             $('#ordersTable').DataTable();
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+
         });
     </script>
 @endsection
