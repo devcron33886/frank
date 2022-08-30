@@ -96,9 +96,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="pagination py-5 float-right">
-                            {{ $orders->links() }}
-                        </div>
 
                     </div>
                 </div>
