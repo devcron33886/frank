@@ -61,6 +61,17 @@ use Illuminate\Support\Facades\Notification;
         'Cancelled'  => 'Cancelled',
         'Paid'       => 'Paid',
     ];
+    const PENDING = 'Pending';
+
+    const PROCESSING = 'Processing';
+
+    const ON_WAY = 'On Way';
+
+    const DELIVERED = 'Delivered';
+
+    const CANCELLED = 'Cancelled';
+
+    const PAID = 'Paid';
 
     protected $appends = ['amount_to_pay'];
 
@@ -86,6 +97,11 @@ use Illuminate\Support\Facades\Notification;
     public function getAmountToPayAttribute(): float
     {
         return $this->getTotalAmountToPay();
+    }
+
+    public static function getStatuses(): array
+    {
+        return [self::PENDING, self::PROCESSING, self::ON_WAY, self::DELIVERED, self::PAID, self::CANCELLED];
     }
 
 
