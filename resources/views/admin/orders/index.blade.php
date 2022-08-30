@@ -96,7 +96,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="pagination float-right">
+                        <div class="pagination py-5 float-right">
                             {{ $orders->links() }}
                         </div>
 
@@ -108,5 +108,9 @@
 @endsection
 @section('scripts')
     @parent
-    <script></script>
+    <script>
+        $(document).ready(function() {
+            $('#ordersTable').DataTable();
+        });
+    </script>
 @endsection
