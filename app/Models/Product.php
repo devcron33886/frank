@@ -106,7 +106,7 @@ class Product extends Model implements HasMedia
     {
         parent::boot();
         static::addGlobalScope('active', function (Builder $builder) {
-            $builder->whereNotIn('status', ['Not Active']);
+            $builder->whereNotIn('status', ['Not Available']);
         });
         static::addGlobalScope('category', function (Builder $builder) {
             $builder->whereHas('category');
