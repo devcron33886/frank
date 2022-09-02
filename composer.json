@@ -20,6 +20,7 @@
         "laravel/ui": "^3.0",
         "laraveldaily/laravel-charts": "^0.1.29",
         "livewire/livewire": "^2.10",
+        "opcodesio/log-viewer": "^1.2",
         "predis/predis": "^2.0",
         "proengsoft/laravel-jsvalidation": "^4.7",
         "sentry/sentry-laravel": "^2.13",
