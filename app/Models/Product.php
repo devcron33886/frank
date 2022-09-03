@@ -37,7 +37,7 @@ class Product extends Model implements HasMedia
         'deleted_at',
     ];
 
-    protected $with=['meadia','category'];
+    protected $with=['media','category'];
 
     protected $fillable = [
         'category_id',
