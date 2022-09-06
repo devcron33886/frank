@@ -17,7 +17,8 @@ class ClientController extends Controller
         $cat = $request->input('cat');
         $search = $request->input('search');
 
-        $products = Product::with('category')
+        $products = Product::available()
+        ->with('category')
             ->when($cat, function (Builder $builder, $cat) {
                 $builder->whereHas('category', function (Builder $builder) use ($cat) {
                     $builder->where('name', '=', $cat);
