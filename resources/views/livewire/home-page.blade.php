@@ -141,7 +141,7 @@
                 <!-- Products tab & slick -->
                 <div class="col-md-12">
                     <div class="row">
-                        @foreach(\App\Models\Product::with('category')->where('status','=','available')->limit(4)->get()->take(10) as $item)
+                        @foreach(\App\Models\Product::with('category')->where('status','=','Available')->limit(4)->get()->take(10) as $item)
                             <div class="col-md-3 col-xs-6">
                                 <livewire:card-product
                                         :product="$item"
@@ -168,7 +168,7 @@
                     <div class="row">
                         <!-- /section title -->
                         <!-- Products tab & slick -->
-                        @foreach(\App\Models\Product::with('category')->orderBy('id','desc')->limit(4)->get() as $item)
+                        @foreach(\App\Models\Product::available()->with('category')->orderBy('id','desc')->limit(4)->get() as $item)
                             <div class="col-md-3 col-sm-6">
                                 <livewire:card-product
                                         :product="$item"

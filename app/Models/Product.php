@@ -103,13 +103,14 @@ class Product extends Model implements HasMedia
     {
         return $date->format('Y-m-d H:i:s');
     }
+    public function scopeAvailable($query)
+    {
+        return $query->where('status', 'Available');
+    }
 
     protected static function boot()
     {
         parent::boot();
-        static::addGlobalScope('active', function (Builder $builder) {
-            $builder->whereNotIn('status', ['Not Available']);
-        });
         static::addGlobalScope('category', function (Builder $builder) {
             $builder->whereHas('category');
         });
