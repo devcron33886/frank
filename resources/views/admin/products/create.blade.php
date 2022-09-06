@@ -91,9 +91,9 @@
                                 <div class="form-group col-6">
                                     <label for="min_stock">{{ trans('cruds.product.fields.min_stock') }}</label>
                                     <input class="form-control {{ $errors->has('min_stock') ? 'is-invalid' : '' }}"
-                                        type="text" name="min_stock" id="min_stock" value="{{ old('min_stock', '') }}">
-                                    @if ($errors->has('min_stock'))
-                                        <span class="text-danger">{{ $errors->first('min_stock') }}</span>
+                                        type="text" name="minStock" id="minStock" value="{{ old('minStock', '') }}">
+                                    @if ($errors->has('minStock'))
+                                        <span class="text-danger">{{ $errors->first('minStock') }}</span>
                                     @endif
                                     <span class="help-block">{{ trans('cruds.product.fields.min_stock_helper') }}</span>
                                 </div>

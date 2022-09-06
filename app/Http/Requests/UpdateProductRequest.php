@@ -30,7 +30,7 @@ class UpdateProductRequest extends FormRequest
             'price' => [
                 'required',
                 'string',
-                
+
             ],
             'measure' => [
                 'string',

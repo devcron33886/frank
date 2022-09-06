@@ -57,7 +57,7 @@ class ProductController extends Controller
 
         $categories = Category::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $product->load('category');
+        $product->withoutGlobalScopes()->load('category');
 
         return view('admin.products.edit', compact('categories', 'product'));
     }
@@ -84,7 +84,7 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $product->load('category');
+        $product->withoutGlobalScopes()->load('category');
 
         return view('admin.products.show', compact('product'));
     }
