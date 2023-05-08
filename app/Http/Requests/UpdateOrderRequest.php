@@ -21,7 +21,7 @@ class UpdateOrderRequest extends FormRequest
             'updated_by_id' => [
                 'required',
             ],
-            
+
         ];
     }
 }

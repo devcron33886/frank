@@ -46,9 +46,9 @@ class OrderUpdatedNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->subject('Order #'.$this->order->order_no.' has been updated')
-                    ->line($this->updated_by->name.' has updated order #' .$this->order->order_no.' status to '.$this->order->status)
-                    ->action('Check it out here', url('http://gardenofedenrwanda.com/admin/orders/'.$this->order->id.'/edit'));
-                    
+            ->subject('Order #'.$this->order->order_no.' has been updated')
+            ->line($this->updated_by->name.' has updated order #'.$this->order->order_no.' status to '.$this->order->status)
+            ->action('Check it out here', url('http://gardenofedenrwanda.com/admin/orders/'.$this->order->id.'/edit'));
+
     }
 }

@@ -11,7 +11,7 @@ class NewOrderNotification extends Notification
 {
     use Queueable;
 
-    public  $order;
+    public $order;
 
     /**
      * Create a new notification instance.
@@ -43,10 +43,10 @@ class NewOrderNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('New order', )
+            ->subject('New order')
             ->greeting('Hello there is a new order need a review')
             ->line('New order by '.$this->order->clientName.' which has order number '.$this->order->order_no)
             ->action('Review the order here', url('/admin/orders/'.$this->order->id.'/edit'));
-            
+
     }
 }

@@ -25,9 +25,6 @@ function format_phone_us($phone)
 if (! function_exists('encryptId')) {
     /**
      * Checking if user has permission
-     *
-     * @param $id
-     * @return string
      */
     function encryptId($id): string
     {
@@ -39,10 +36,7 @@ if (! function_exists('encryptId')) {
 }
 
 if (! function_exists('decryptId')) {
-    /**
-     * @param $id
-     * @return int
-     */
+
     function decryptId($id): int
     {
         $hashids = new Hashids\Hashids('', 32);

@@ -47,20 +47,20 @@ use Illuminate\Support\Facades\Notification;
  * @method static Builder|Order whereStatus($value)
  * @method static Builder|Order whereUpdatedAt($value)
  * @method static Builder|Order whereUserId($value)
+ *
  * @mixin Eloquent
  */
-
-
- class Order extends Model
+class Order extends Model
 {
     public const STATUS_SELECT = [
-        'Pending'    => 'Pending',
+        'Pending' => 'Pending',
         'Processing' => 'Processing',
-        'On Way'     => 'On Way',
-        'Delivered'  => 'Delivered',
-        'Cancelled'  => 'Cancelled',
-        'Paid'       => 'Paid',
+        'On Way' => 'On Way',
+        'Delivered' => 'Delivered',
+        'Cancelled' => 'Cancelled',
+        'Paid' => 'Paid',
     ];
+
     const PENDING = 'Pending';
 
     const PROCESSING = 'Processing';
@@ -75,7 +75,6 @@ use Illuminate\Support\Facades\Notification;
 
     protected $appends = ['amount_to_pay'];
 
-
     protected $guarded = [];
 
     public function orderItems()
@@ -83,11 +82,10 @@ use Illuminate\Support\Facades\Notification;
         return $this->hasMany(OrderItem::class);
     }
 
-    public function updated_by() : BelongsTo
+    public function updated_by(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-    
 
     public function getTotalAmountToPay(): float
     {
@@ -104,7 +102,6 @@ use Illuminate\Support\Facades\Notification;
         return [self::PENDING, self::PROCESSING, self::ON_WAY, self::DELIVERED, self::PAID, self::CANCELLED];
     }
 
-
     public function setOrderNo(string $prefix = 'ORD', $pad_string = '0', int $len = 8)
     {
         $orderNo = $prefix.str_pad($this->id, $len, $pad_string, STR_PAD_LEFT);
@@ -115,13 +112,9 @@ use Illuminate\Support\Facades\Notification;
     public static function booting()
     {
         self::updated(function (Order $order) {
-            if ($order->isDirty('status') && in_array($order->status, ['Pending', 'Processing','On Way','Delivered','Cancelled','Paid'])) {
+            if ($order->isDirty('status') && in_array($order->status, ['Pending', 'Processing', 'On Way', 'Delivered', 'Cancelled', 'Paid'])) {
                 Notification::route('mail', $order->email)->notify(new OrderStatusNotification($order->status));
             }
         });
     }
-
-    
-
-    
 }

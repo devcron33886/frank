@@ -37,7 +37,7 @@ class Product extends Model implements HasMedia
         'deleted_at',
     ];
 
-    protected $with=['media','category'];
+    protected $with = ['media', 'category'];
 
     protected $fillable = [
         'category_id',
@@ -79,7 +79,7 @@ class Product extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 120, 120);
-        $this->addMediaConversion('preview')->fit('crop',1920,1080);
+        $this->addMediaConversion('preview')->fit('crop', 1920, 1080);
     }
 
     public function category(): BelongsTo
@@ -103,6 +103,7 @@ class Product extends Model implements HasMedia
     {
         return $date->format('Y-m-d H:i:s');
     }
+
     public function scopeAvailable($query)
     {
         return $query->where('status', 'Available');

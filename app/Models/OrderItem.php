@@ -32,6 +32,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|OrderItem whereQty($value)
  * @method static Builder|OrderItem whereSubTotal($value)
  * @method static Builder|OrderItem whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class OrderItem extends Model

@@ -9,7 +9,6 @@ use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Models\User;
-use App\MyFunc;
 use App\Notifications\NewOrderNotification;
 use Cart;
 use DB;
@@ -81,7 +80,6 @@ class CartController extends Controller
     }
 
     /**
-     * @param $id
      * @return RedirectResponse
      */
     public function getRemoveItem($id)
@@ -149,7 +147,9 @@ class CartController extends Controller
         $order->setOrderNo('ORD');
         DB::commit();
         Mail::to($order->email)->send(new NotifyClientMail($order));
-        $users = User::whereHas('roles', function ($q) { return $q->where('title', 'Admin'); })->get();
+        $users = User::whereHas('roles', function ($q) {
+            return $q->where('title', 'Admin');
+        })->get();
         Notification::send($users, new NewOrderNotification($order));
 
         Cart::clear();

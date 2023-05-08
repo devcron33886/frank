@@ -22,7 +22,7 @@ class ProductController extends Controller
     {
         abort_if(Gate::denies('product_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $products = Product::with(['category','media'])->get();
+        $products = Product::with(['category', 'media'])->get();
 
         return view('admin.products.index', compact('products'));
     }

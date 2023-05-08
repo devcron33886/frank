@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
 use App\Models\User;
-use Gate;
 use App\Notifications\OrderUpdatedNotification;
+use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -16,9 +16,9 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $orders=Order::with('updated_by')->orderBy('id', 'desc')->paginate(10);
-       
-        return view('admin.orders.index',compact('orders'));
+        $orders = Order::with('updated_by')->orderBy('id', 'desc')->paginate(10);
+
+        return view('admin.orders.index', compact('orders'));
     }
 
     public function edit(Order $order)
@@ -34,7 +34,6 @@ class OrderController extends Controller
         User::all()->except($order->updated_by->id)->each(function (User $user) use ($order) {
             $user->notify(new OrderUpdatedNotification($order));
         });
-
 
         return redirect()->route('admin.orders.index');
     }

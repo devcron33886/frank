@@ -4,9 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Models\Setting;
 use Cart;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class ShoppingCartPage extends Component
@@ -24,9 +21,9 @@ class ShoppingCartPage extends Component
     public function render()
     {
         $cart = Cart::getContent();
-        $settings= Setting::first();
+        $settings = Setting::first();
 
-        return view('livewire.shopping-cart-page', compact('cart','settings'));
+        return view('livewire.shopping-cart-page', compact('cart', 'settings'));
     }
 
     public function removeAll()

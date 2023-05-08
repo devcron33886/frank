@@ -1,23 +1,19 @@
 <?php
 
-Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
-    // Category
-    Route::apiResource('categories', 'CategoryApiController');
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
-    // Product
-    Route::post('products/media', 'ProductApiController@storeMedia')->name('products.storeMedia');
-    Route::apiResource('products', 'ProductApiController');
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "api" middleware group. Make something great!
+|
+*/
 
-    // Event
-    Route::apiResource('events', 'EventApiController');
-
-    // Newsletter
-    Route::apiResource('newsletters', 'NewsletterApiController');
-
-    // Shop
-    Route::post('shops/media', 'ShopApiController@storeMedia')->name('shops.storeMedia');
-    Route::apiResource('shops', 'ShopApiController');
-
-    // Order
-    Route::apiResource('orders', 'OrderApiController');
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });

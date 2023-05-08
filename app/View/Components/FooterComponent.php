@@ -2,8 +2,8 @@
 
 namespace App\View\Components;
 
-use Illuminate\View\Component;
 use App\Models\Setting;
+use Illuminate\View\Component;
 
 class FooterComponent extends Component
 {
@@ -24,7 +24,8 @@ class FooterComponent extends Component
      */
     public function render()
     {
-        $settings=Setting::query()->first();
-        return view('components.footer-component',compact('settings'));
+        $settings = Setting::query()->first();
+
+        return view('components.footer-component', compact('settings'));
     }
 }

@@ -24,7 +24,8 @@ class NavigationComponent extends Component
      */
     public function render()
     {
-        $categories=Category::withCount('products')->latest()->get();
+        $categories = Category::withCount('products')->latest()->get();
+
         return view('components.navigation-component', compact('categories'));
     }
 }

@@ -12,9 +12,7 @@ class NewsletterController extends Controller
         $newsletter = new Newsletter();
         $newsletter->email = $request->email;
         $newsletter->save();
-        
+
         return redirect()->back()->with('success', 'Thank you for subscribing with us, we will notify you for Any product we publish on our site');
     }
-    
-
 }

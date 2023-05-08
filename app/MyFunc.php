@@ -88,7 +88,7 @@ class MyFunc
     {
         return DB::table('order_items')
             ->join('orders', 'order_items.order_id', '=', 'orders.id')
-            ->where('orders.status', '=','Paid')
+            ->where('orders.status', '=', 'Paid')
             ->sum('order_items.sub_total');
     }
 
